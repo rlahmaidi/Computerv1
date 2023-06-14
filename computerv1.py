@@ -57,14 +57,19 @@ if __name__ == "__main__":
     equ_spl_by_equal = equation.split("=")
     left_coef = one_part_coef(equ_spl_by_equal[0])
     right_coef = one_part_coef(equ_spl_by_equal[1])
-    print("the left part coefficient are ", left_coef)
-    print("the right part coefficient are ", right_coef)
     equ_coef = []
     # calculate the equation coefficient
     for i in range(0,3):
         equ_coef.append(left_coef[i] + right_coef[i])
+    sign1 ='+'
+    sign2 = '+'
+    text = "Reduced form: {cof[0]} * X^0 {sign} {cof[1]}  * X^1 {sign2} {cof[2]} * X^2 = 0"
+    if equ_coef[1] < 0:
+        sign1 = "-"
+    if equ_coef[2] < 0:
+        sign2 = '-'
+    print(text.format(equ_coef[0], sign1, str(equ_coef[1]), sign2, str(equ_coef[2],)))
     # calculatin the equation degree
-    print("coeffie after add ", equ_coef)
     equ_degre = -1
     for el in equ_coef:
         # the weird thing below need to be tested
@@ -74,8 +79,6 @@ if __name__ == "__main__":
     # solving the equation
     if equ_coef[1] == equ_coef[2] == 0:
         if equ_coef[0] == 0:
-            print("your set of sulution is big, veeeeeery big")
-            print("it's uncountably infinite")
             print("i.e every real number is a solution")
         else:
             print("the only solution for this equation is 0")

@@ -18,8 +18,10 @@ from operator import add
 #     npos += 1
 
 # print(dic)
-from math import sqrt
+# from math import sqrt
 
-print((sqrt(8) + 4)/ 4)
-print((2 - sqrt(2)) / 2)
+# print((sqrt(8) + 4)/ 4)
+# print((2 - sqrt(2)) / 2)
 
+number = +1
+print(str(number))
