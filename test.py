@@ -23,5 +23,9 @@ from operator import add
 # print((sqrt(8) + 4)/ 4)
 # print((2 - sqrt(2)) / 2)
 
-number = +1
-print(str(number))
+# number = -1
+# print(str(number))
+
+lst = [1,2,3] 
+lst = [i * (-1) for i in lst]
+print(lst)

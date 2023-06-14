@@ -1,5 +1,5 @@
 import re
-from math import sqrt
+from math import sqrt, fabs
 import sys
 
 
@@ -57,18 +57,11 @@ if __name__ == "__main__":
     equ_spl_by_equal = equation.split("=")
     left_coef = one_part_coef(equ_spl_by_equal[0])
     right_coef = one_part_coef(equ_spl_by_equal[1])
+    right_coef = [i * (-1) for i in right_coef]
     equ_coef = []
     # calculate the equation coefficient
     for i in range(0,3):
         equ_coef.append(left_coef[i] + right_coef[i])
-    sign1 ='+'
-    sign2 = '+'
-    text = "Reduced form: {cof[0]} * X^0 {sign} {cof[1]}  * X^1 {sign2} {cof[2]} * X^2 = 0"
-    if equ_coef[1] < 0:
-        sign1 = "-"
-    if equ_coef[2] < 0:
-        sign2 = '-'
-    print(text.format(equ_coef[0], sign1, str(equ_coef[1]), sign2, str(equ_coef[2],)))
     # calculatin the equation degree
     equ_degre = -1
     for el in equ_coef:
@@ -86,6 +79,14 @@ if __name__ == "__main__":
         print("the solution of this equation is: ")
         print((-1) * equ_coef[0] / equ_coef[1])
     else:
+        sign1 ='+'
+        sign2 = '+'
+        text = "Reduced form: {} * X^0 {} {}  * X^1 {} {} * X^2 = 0"
+        if equ_coef[1] < 0:
+            sign1 = "-"
+        if equ_coef[2] < 0:
+            sign2 = '-'
+        print(text.format(equ_coef[0], sign1, fabs(equ_coef[1]), sign2, fabs(equ_coef[2],)))
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
         if delta < 0:
             print("")
