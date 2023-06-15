@@ -1,7 +1,15 @@
 import re
 from math import sqrt, fabs
 import sys
+# To be done:
+# 1 - display the reduced form of a degree> 2
+# 2 - display the reduced form of a degree < 2
 
+def Reduced(equ_coef):
+    i = 0
+    text = ""
+    for element in equ_coef:
+        if
 
 def reduced_form(equ_coef):
     sign1 ='+'
@@ -56,7 +64,7 @@ def  one_part_coef(part):
     for key,value in sorted_dict.items():
         coef[i] = coef[i] * value
         i += 1
-    while len(coef) != 3:
+    while len(coef) < 3:
         coef.append(0)
 
     return coef

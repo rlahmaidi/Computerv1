@@ -26,6 +26,13 @@ from operator import add
 # number = -1
 # print(str(number))
 
-lst = [1,2,3] 
-lst = [i * (-1) for i in lst]
-print(lst)
+# lst = [1,2,3] 
+# lst = [i * (-1) for i in lst]
+# print(lst)
+
+
+name = 'rachid'
+second_name = "lahmaidi"
+text = "my first name is: {first}, and my second name is {second}"
+
+print(text.format(first=name, second=second_name))
