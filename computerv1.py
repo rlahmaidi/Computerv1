@@ -3,6 +3,17 @@ from math import sqrt, fabs
 import sys
 
 
+def reduced_form(equ_coef):
+    sign1 ='+'
+    sign2 = '+'
+    text = "Reduced form: {} * X^0 {} {}  * X^1 {} {} * X^2 = 0"
+    if equ_coef[1] < 0:
+        sign1 = "-"
+    if equ_coef[2] < 0:
+        sign2 = '-'
+    print(text.format(equ_coef[0], sign1, fabs(equ_coef[1]), sign2, fabs(equ_coef[2],)))
+
+
 def  one_part_coef(part):
     split_by_sign =  re.split('[+-]', part)
     if len(split_by_sign) > 3:
@@ -79,14 +90,7 @@ if __name__ == "__main__":
         print("the solution of this equation is: ")
         print((-1) * equ_coef[0] / equ_coef[1])
     else:
-        sign1 ='+'
-        sign2 = '+'
-        text = "Reduced form: {} * X^0 {} {}  * X^1 {} {} * X^2 = 0"
-        if equ_coef[1] < 0:
-            sign1 = "-"
-        if equ_coef[2] < 0:
-            sign2 = '-'
-        print(text.format(equ_coef[0], sign1, fabs(equ_coef[1]), sign2, fabs(equ_coef[2],)))
+        reduced_form(equ_coef)
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
         if delta < 0:
             print("")
@@ -107,7 +111,7 @@ if __name__ == "__main__":
     # print(equ_spl_by_equal)
     # print("the left coef are ", left_coef)
     # print("the right coeffiecient are: ", right_coef)
-    print("the equation coefs are ", equ_coef)
+    # print("the equation coefs are ", equ_coef)
     print("the value of delata is ", delta)
     # print("the equation is ", equation)
     # print("the equation type is ", type(equation))
