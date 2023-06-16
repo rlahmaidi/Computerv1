@@ -39,4 +39,22 @@ from operator import add
 # from math import fabs
 # st = "ra"
 # print(st + str(abs(-1)))
-print(float(1))
+# print(float(1))
+
+# import re
+
+# text = "     12.34  "
+# text = text.replace(" ","")
+# print(text)
+# pattern = r"[^1-9.]"
+
+# match = re.search(pattern, text)
+
+# if match:
+#     print("Text contains a non-digit and non-dot character.")
+# else:
+#     print("Text only contains digits and dots.")
+
+text = "rachid lahmaidi"
+modified = text[1:]
+print(modified)

@@ -32,27 +32,37 @@ def Reduced(equ_coef):
 #     if equ_coef[2] < 0:
 #         sign2 = '-'
 #     print(text.format(equ_coef[0], sign1, fabs(equ_coef[1]), sign2, fabs(equ_coef[2],)))
+def is_float(coef):
+    import re
+
+    coef = coef.replace(" ", "")
+    pattern = r"[^0-9.]"
+
+    match = re.search(pattern, coef)
+
+    if match:
+        print("coefficient should be integers or floats only")
+        sys.exit()
+    else:
+        pattern = r"[.]"
+        if re.search(pattern, coef):
+            return True
+        else:
+            return False
 
 
 def  one_part_coef(part):
-    split_by_sign =  re.split('[+-]', part)
-    # if len(split_by_sign) > 3:
-    #     print("Polynomial degree: ", len(split_by_sign))
-    #     print("The polynomial degree is strictly greater than 2, I can't solve.")
-    #     sys.exit()
+    minus_taken_from_beg = part
+    if part[0] == '-':
+        minus_taken_from_beg = part[1:]
+    split_by_sign =  re.split('[+-]', minus_taken_from_beg)
     coef = []
     for element in split_by_sign:
         split_by_etoile = element.split('*')
-        # perhaps some function for error management here
-        if split_by_etoile[0].isdigit() is True:
-            coef.append(int(split_by_etoile[0]))
+        if is_float(split_by_etoile[0]):
+            coef.append(float(split_by_etoile[0]))
         else:
-            try:
-                coef.append(float(split_by_etoile[0]))
-            except Exception:
-                print("the polynomial coefficient should be integer or float")
-                sys.exit()
-    # print(coef)
+            coef.append(int(split_by_etoile[0]))
     # looking for minus and plus
 
     index = 0
