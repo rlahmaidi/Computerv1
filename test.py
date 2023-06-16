@@ -31,8 +31,11 @@ from operator import add
 # print(lst)
 
 
-name = 'rachid'
-second_name = "lahmaidi"
-text = "my first name is: {first}, and my second name is {second}"
+# name = 'rachid'
+# second_name = "lahmaidi"
+# text = "my first name is: {first}, and my second name is {second}"
 
-print(text.format(first=name, second=second_name))
+# print(text.format(first=name, second=second_name))
+from math import fabs
+st = "ra"
+print(st + str(abs(-1)))

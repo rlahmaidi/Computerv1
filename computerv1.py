@@ -9,7 +9,16 @@ def Reduced(equ_coef):
     i = 0
     text = ""
     for element in equ_coef:
-        if
+        if element != 0:
+            if element < 0:
+                text += ' - '
+            else:
+                text += ' + '
+            if isinstance(element, int):
+                text += str(abs(element))
+            elif isinstance(element, float):
+                text += str(fabs(element))
+                
 
 def reduced_form(equ_coef):
     sign1 ='+'
@@ -32,7 +41,14 @@ def  one_part_coef(part):
     for element in split_by_sign:
         split_by_etoile = element.split('*')
         # perhaps some function for error management here
-        coef.append(float(split_by_etoile[0]))
+        if split_by_etoile[0].isdigit() is True:
+            coef.append(int(split_by_etoile[0]))
+        else:
+            try:
+                coef.append(float(split_by_etoile[0]))
+            except Exception:
+                print("the polynomial coefficient should be integer or float")
+                sys.exit()
     print(coef)
     # looking for minus and plus
 
@@ -119,7 +135,7 @@ if __name__ == "__main__":
     # print(equ_spl_by_equal)
     # print("the left coef are ", left_coef)
     # print("the right coeffiecient are: ", right_coef)
-    # print("the equation coefs are ", equ_coef)
+    print("the equation coefs are ", equ_coef)
     print("the value of delata is ", delta)
     # print("the equation is ", equation)
     # print("the equation type is ", type(equation))
