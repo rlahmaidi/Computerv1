@@ -21,7 +21,7 @@ def Reduced(equ_coef):
                 text += str(fabs(equ_coef[i]))
             text += " * X^" + str(i)
     text += " = 0"
-    print("Reduced form: ", text)    
+    print("Reduced form: ", text)
 
 
 def is_float(coef):
@@ -43,11 +43,11 @@ def is_float(coef):
             return False
 
 
-def  one_part_coef(part):
+def one_part_coef(part):
     minus_taken_from_beg = part
     if part[0] == '-':
         minus_taken_from_beg = part[1:]
-    split_by_sign =  re.split('[+-]', minus_taken_from_beg)
+    split_by_sign = re.split('[+-]', minus_taken_from_beg)
     coef = []
     for element in split_by_sign:
         split_by_etoile = element.split('*')
@@ -61,7 +61,7 @@ def  one_part_coef(part):
     dic = {}
     # looking for minus
     while index < len(part):
-        index = part.find('-',index)
+        index = part.find('-', index)
         if index == -1:
             break
         dic[index] = -1
@@ -69,7 +69,7 @@ def  one_part_coef(part):
     # looking for +
     index = 0
     while index < len(part):
-        index = part.find('+',index)
+        index = part.find('+', index)
         if index == -1:
             break
         dic[index] = 1
@@ -82,13 +82,12 @@ def  one_part_coef(part):
     sorted_dict = {i: dic[i] for i in myKeys}
     # multiply coef by their signs
     i = 0
-    for key,value in sorted_dict.items():
+    for key, value in sorted_dict.items():
         coef[i] = coef[i] * value
         i += 1
     while len(coef) < 3:
         coef.append(0)
     return coef
-
 
 
 if __name__ == "__main__":
@@ -114,8 +113,9 @@ if __name__ == "__main__":
     Reduced(equ_coef)
     print("Polynomial degree: ", equ_degre)
     # solving the equation
-    if len(equ_coef) > 3 :
-        print("The polynomial degree is strictly greater than 2, I can't solve.")
+    if len(equ_coef) > 3:
+        print("The polynomial degree is strictly\
+               greater than 2, I can't solve.")
     elif equ_coef[1] == equ_coef[2] == 0:
         if equ_coef[0] == 0:
             print("i.e every real number is a solution")
@@ -140,7 +140,6 @@ if __name__ == "__main__":
 
             print(sol1)
             print(sol2)
-
 
     # print("value of equ splitted by = is:")
     # print(equ_spl_by_equal)
