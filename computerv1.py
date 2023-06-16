@@ -13,7 +13,7 @@ def Reduced(equ_coef):
         if equ_coef[i] != 0:
             if equ_coef[i] < 0:
                 text += ' - '
-            elif equ_coef[i] > 0 and i != 0:
+            elif equ_coef[i] > 0 and i != 0 and text != "":
                 text += ' + '
             if isinstance(equ_coef[i], int):
                 text += str(abs(equ_coef[i]))
@@ -56,7 +56,6 @@ def one_part_coef(part):
         else:
             coef.append(int(split_by_etoile[0]))
     # looking for minus and plus
-
     index = 0
     dic = {}
     # looking for minus
@@ -90,13 +89,7 @@ def one_part_coef(part):
     return coef
 
 
-if __name__ == "__main__":
-    equation = input("give me an equation to solve: ")
-    equ_spl_by_equal = equation.split("=")
-    left_coef = one_part_coef(equ_spl_by_equal[0])
-    right_coef = one_part_coef(equ_spl_by_equal[1])
-    right_coef = [i * (-1) for i in right_coef]
-    # calculate the equation coefficient
+def polynom_coefficient_an_degree(left_coef, right_coef):
     while len(left_coef) < len(right_coef):
         left_coef.append(0)
     while len(right_coef) < len(left_coef):
@@ -104,18 +97,27 @@ if __name__ == "__main__":
     equ_coef = []
     for i in range(len(right_coef)):
         equ_coef.append(left_coef[i] + right_coef[i])
-    # calculatin the equation degree
     equ_degre = -1
     for el in equ_coef:
         # the weird thing below need to be tested
         if el != 0.0:
             equ_degre += 1
-    Reduced(equ_coef)
     print("Polynomial degree: ", equ_degre)
+    return equ_coef
+
+
+if __name__ == "__main__":
+    equation = input("give me an equation to solve: ")
+    equ_spl_by_equal = equation.split("=")
+    left_coef = one_part_coef(equ_spl_by_equal[0])
+    right_coef = one_part_coef(equ_spl_by_equal[1])
+    right_coef = [i * (-1) for i in right_coef]
+    equ_coef = polynom_coefficient_an_degree(left_coef, right_coef)
+    Reduced(equ_coef)
     # solving the equation
     if len(equ_coef) > 3:
-        print("The polynomial degree is strictly\
-               greater than 2, I can't solve.")
+        print("The polynomial degree is strictly"
+              "greater than 2, I can't solve.")
     elif equ_coef[1] == equ_coef[2] == 0:
         if equ_coef[0] == 0:
             print("i.e every real number is a solution")
@@ -125,11 +127,9 @@ if __name__ == "__main__":
         print("the solution of this equation is: ")
         print((-1) * equ_coef[0] / equ_coef[1])
     else:
-        # reduced_form(equ_coef)
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
         if delta < 0:
-            print("")
-            print("i can't solve this")
+            print("Discriminant is strictly negative, i can't solve this")
         elif delta == 0:
             print("the solution is:")
             sol = (-1) * equ_coef[1]
@@ -137,15 +137,5 @@ if __name__ == "__main__":
             print("the solutions are:")
             sol1 = ((-1) * equ_coef[1] - sqrt(delta)) / (2 * equ_coef[2])
             sol2 = ((-1) * equ_coef[1] + sqrt(delta)) / (2 * equ_coef[2])
-
             print(sol1)
             print(sol2)
-
-    # print("value of equ splitted by = is:")
-    # print(equ_spl_by_equal)
-    # print("the left coef are ", left_coef)
-    # print("the right coeffiecient are: ", right_coef)
-    # print("the equation coefs are ", equ_coef)
-    # print("the value of delata is ", delta)
-    # print("the equation is ", equation)
-    # print("the equation type is ", type(equation))
