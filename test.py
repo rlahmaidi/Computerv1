@@ -36,6 +36,7 @@ from operator import add
 # text = "my first name is: {first}, and my second name is {second}"
 
 # print(text.format(first=name, second=second_name))
-from math import fabs
-st = "ra"
-print(st + str(abs(-1)))
+# from math import fabs
+# st = "ra"
+# print(st + str(abs(-1)))
+print(float(1))
