@@ -5,6 +5,7 @@ import sys
 # 1 - display the reduced form of a degree> 2
 # 2 - display the reduced form of a degree < 2
 
+
 def Reduced(equ_coef):
     i = 0
     text = ""
@@ -20,18 +21,9 @@ def Reduced(equ_coef):
                 text += str(fabs(equ_coef[i]))
             text += " * X^" + str(i)
     text += " = 0"
-    print("Reduced form: ",text)
-                
+    print("Reduced form: ", text)    
 
-# def reduced_form(equ_coef):
-#     sign1 ='+'
-#     sign2 = '+'
-#     text = "Reduced form: {} * X^0 {} {}  * X^1 {} {} * X^2 = 0"
-#     if equ_coef[1] < 0:
-#         sign1 = "-"
-#     if equ_coef[2] < 0:
-#         sign2 = '-'
-#     print(text.format(equ_coef[0], sign1, fabs(equ_coef[1]), sign2, fabs(equ_coef[2],)))
+
 def is_float(coef):
     import re
 
@@ -154,7 +146,7 @@ if __name__ == "__main__":
     # print(equ_spl_by_equal)
     # print("the left coef are ", left_coef)
     # print("the right coeffiecient are: ", right_coef)
-    print("the equation coefs are ", equ_coef)
+    # print("the equation coefs are ", equ_coef)
     # print("the value of delata is ", delta)
     # print("the equation is ", equation)
     # print("the equation type is ", type(equation))
