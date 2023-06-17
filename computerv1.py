@@ -1,9 +1,6 @@
 import re
 from math import sqrt, fabs
 import sys
-# To be done:
-# 1 - display the reduced form of a degree> 2
-# 2 - display the reduced form of a degree < 2
 
 
 def Reduced(equ_coef):
@@ -131,10 +128,10 @@ if __name__ == "__main__":
         if delta < 0:
             print("Discriminant is strictly negative, i can't solve this")
         elif delta == 0:
-            print("the solution is:")
+            print("Discriminant is null, the solution is:")
             sol = (-1) * equ_coef[1]
         else:
-            print("the solutions are:")
+            print("Discriminant is strictly positive ,the two solutions are:")
             sol1 = ((-1) * equ_coef[1] - sqrt(delta)) / (2 * equ_coef[2])
             sol2 = ((-1) * equ_coef[1] + sqrt(delta)) / (2 * equ_coef[2])
             print(sol1)
