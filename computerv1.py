@@ -87,6 +87,7 @@ def one_part_coef(part):
 
 
 def polynom_coefficient_an_degree(left_coef, right_coef):
+    # print("the left coef is before is:", left_coef)
     while len(left_coef) < len(right_coef):
         left_coef.append(0)
     while len(right_coef) < len(left_coef):
@@ -95,16 +96,21 @@ def polynom_coefficient_an_degree(left_coef, right_coef):
     for i in range(len(right_coef)):
         equ_coef.append(left_coef[i] + right_coef[i])
     equ_degre = -1
-    for el in equ_coef:
-        # the weird thing below need to be tested
-        if el != 0.0:
-            equ_degre += 1
-    print("Polynomial degree: ", equ_degre)
+    # for el in equ_coef:
+    #     # the weird thing below need to be tested
+    #     if el != 0.0:
+    #         equ_degre += 1
+    # print("Polynomial degree: ", equ_degre)
+    # print("the left coef is :", left_coef)
+    print("the equation coef are:", equ_coef)
+    print("Polynomial degree: ", len(equ_coef))
     return equ_coef
 
 
 if __name__ == "__main__":
     equation = input("give me an equation to solve: ")
+    #trimmed to get rid of double quotes
+    equation = equation[1:-1]
     equ_spl_by_equal = equation.split("=")
     left_coef = one_part_coef(equ_spl_by_equal[0])
     right_coef = one_part_coef(equ_spl_by_equal[1])
