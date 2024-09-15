@@ -4,21 +4,24 @@ import sys
 
 
 def Reduced(equ_coef):
-    i = 0
-    text = ""
-    for i in range(len(equ_coef)):
-        if equ_coef[i] != 0:
-            if equ_coef[i] < 0:
-                text += ' - '
-            elif equ_coef[i] > 0 and i != 0 and text != "":
-                text += ' + '
-            if isinstance(equ_coef[i], int):
-                text += str(abs(equ_coef[i]))
-            elif isinstance(equ_coef[i], float):
-                text += str(fabs(equ_coef[i]))
-            text += " * X^" + str(i)
-    text += " = 0"
-    print("Reduced form: ", text)
+    if all(x == 0 for x in equ_coef):
+        print("Reduced form: 0 * X^0 = 0")
+    else:
+        i = 0
+        text = ""
+        for i in range(len(equ_coef)):
+            if equ_coef[i] != 0:
+                if equ_coef[i] < 0:
+                    text += ' - '
+                elif equ_coef[i] > 0 and i != 0 and text != "":
+                    text += ' + '
+                if isinstance(equ_coef[i], int):
+                    text += str(abs(equ_coef[i]))
+                elif isinstance(equ_coef[i], float):
+                    text += str(fabs(equ_coef[i]))
+                text += " * X^" + str(i)
+        text += " = 0"
+        print("Reduced form: ", text)
 
 
 def is_float(coef):
@@ -86,8 +89,7 @@ def one_part_coef(part):
     return coef
 
 
-def polynom_coefficient_an_degree(left_coef, right_coef):
-    # print("the left coef is before is:", left_coef)
+def polynom_coefficient(left_coef, right_coef):
     while len(left_coef) < len(right_coef):
         left_coef.append(0)
     while len(right_coef) < len(left_coef):
@@ -95,16 +97,21 @@ def polynom_coefficient_an_degree(left_coef, right_coef):
     equ_coef = []
     for i in range(len(right_coef)):
         equ_coef.append(left_coef[i] + right_coef[i])
-    equ_degre = -1
-    # for el in equ_coef:
-    #     # the weird thing below need to be tested
-    #     if el != 0.0:
-    #         equ_degre += 1
-    # print("Polynomial degree: ", equ_degre)
-    # print("the left coef is :", left_coef)
-    print("the equation coef are:", equ_coef)
-    print("Polynomial degree: ", len(equ_coef))
     return equ_coef
+
+def equation_degree(equ_coef):
+    #for the special case a * X^0 = a * X^0
+    if all(x == 0 for x in equ_coef):
+        return 0
+    tmp_list = equ_coef[::-1]
+    deg = len(equ_coef) - 1
+    for el in tmp_list:
+        if el != 0:
+            break
+        else:
+            deg = deg - 1
+    return deg
+
 
 
 if __name__ == "__main__":
@@ -115,18 +122,20 @@ if __name__ == "__main__":
     left_coef = one_part_coef(equ_spl_by_equal[0])
     right_coef = one_part_coef(equ_spl_by_equal[1])
     right_coef = [i * (-1) for i in right_coef]
-    equ_coef = polynom_coefficient_an_degree(left_coef, right_coef)
+    equ_coef = polynom_coefficient(left_coef, right_coef)
     Reduced(equ_coef)
+    degree = equation_degree(equ_coef)
+    print("Polynomial degree:", degree)
     # solving the equation
-    if len(equ_coef) > 3:
-        print("The polynomial degree is strictly"
+    if degree > 2:
+        print("The polynomial degree is strictly "
               "greater than 2, I can't solve.")
-    elif equ_coef[1] == equ_coef[2] == 0:
+    elif degree == 0:
         if equ_coef[0] == 0:
-            print("i.e every real number is a solution")
+            print("every real number is a solution")
         else:
-            print("the only solution for this equation is 0")
-    elif equ_coef[2] == 0 and equ_coef[1] != 0:
+            print("there is no solution to this equation")
+    elif degree == 1:
         print("the solution of this equation is: ")
         print((-1) * equ_coef[0] / equ_coef[1])
     else:
