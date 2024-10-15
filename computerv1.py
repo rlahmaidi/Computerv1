@@ -140,14 +140,16 @@ if __name__ == "__main__":
         print((-1) * equ_coef[0] / equ_coef[1])
     else:
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
+        print("delta is ", delta)
         if delta < 0:
             print("Discriminant is strictly negative, i can't solve this")
         elif delta == 0:
             print("Discriminant is null, the solution is:")
-            sol = (-1) * equ_coef[1]
+            sol = (-1) * equ_coef[1]/(2 * equ_coef[2])
+            print(sol)
         else:
             print("Discriminant is strictly positive ,the two solutions are:")
-            sol1 = ((-1) * equ_coef[1] - sqrt(delta)) / (2 * equ_coef[2])
-            sol2 = ((-1) * equ_coef[1] + sqrt(delta)) / (2 * equ_coef[2])
+            sol1 = ((-1) * equ_coef[1] - delta**(1/2)) / (2 * equ_coef[2])
+            sol2 = ((-1) * equ_coef[1] + delta**(1/2))/ (2 * equ_coef[2])
             print(sol1)
             print(sol2)
