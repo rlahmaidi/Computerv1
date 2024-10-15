@@ -15,10 +15,14 @@ def Reduced(equ_coef):
                     text += ' - '
                 elif equ_coef[i] > 0 and i != 0 and text != "":
                     text += ' + '
-                if isinstance(equ_coef[i], int):
-                    text += str(abs(equ_coef[i]))
-                elif isinstance(equ_coef[i], float):
-                    text += str(fabs(equ_coef[i]))
+                # if isinstance(equ_coef[i], int):
+                #     text += str(abs(equ_coef[i]))
+                # elif isinstance(equ_coef[i], float):
+                #     text += str(fabs(equ_coef[i]))
+                if equ_coef[i] < 0:
+                    text += str((-1) * equ_coef[i])
+                else:
+                    text += str(equ_coef[i])
                 text += " * X^" + str(i)
         text += " = 0"
         print("Reduced form: ", text)
