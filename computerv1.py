@@ -1,5 +1,4 @@
 import re
-from math import sqrt, fabs
 import sys
 
 
@@ -147,7 +146,6 @@ if __name__ == "__main__":
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
         print("delta is ", delta)
         if delta < 0:
-            # print("Discriminant is strictly negative, i can't solve this")
             reel_part = ((-1) * equ_coef[1]) / (2 * equ_coef[2])
             imag_part = (((-1) * delta)**(1/2)) / (2 * equ_coef[2])
             print("discriminant is strictly negative, the two solutions are:")
@@ -163,5 +161,3 @@ if __name__ == "__main__":
             sol2 = ((-1) * equ_coef[1] + delta**(1/2))/ (2 * equ_coef[2])
             print(f"{sol1:.4f}".rstrip("0").rstrip("."))
             print(f"{sol2:.4f}".rstrip("0").rstrip("."))
-            # print(sol1)
-            # print(sol2)
