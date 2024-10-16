@@ -141,19 +141,27 @@ if __name__ == "__main__":
             print("there is no solution to this equation")
     elif degree == 1:
         print("the solution of this equation is: ")
-        print((-1) * equ_coef[0] / equ_coef[1])
+        sol = (-1) * equ_coef[0] / equ_coef[1]
+        print(f"{sol:.4f}".rstrip("0").rstrip("."))
     else:
         delta = equ_coef[1]**2 - 4 * equ_coef[0] * equ_coef[2]
         print("delta is ", delta)
         if delta < 0:
-            print("Discriminant is strictly negative, i can't solve this")
+            # print("Discriminant is strictly negative, i can't solve this")
+            reel_part = ((-1) * equ_coef[1]) / (2 * equ_coef[2])
+            imag_part = (((-1) * delta)**(1/2)) / (2 * equ_coef[2])
+            print("discriminant is strictly negative, the two solutions are:")
+            print(f"{reel_part:.4f}".rstrip("0").rstrip("."), "+", f"{imag_part:.4f}".rstrip("0").rstrip("."),"* i")
+            print(f"{reel_part:.4f}".rstrip("0").rstrip("."), "-", f"{imag_part:.4f}".rstrip("0").rstrip("."),"* i")
         elif delta == 0:
             print("Discriminant is null, the solution is:")
             sol = (-1) * equ_coef[1]/(2 * equ_coef[2])
-            print(sol)
+            print(f"{sol:.4f}".rstrip("0").rstrip("."))
         else:
             print("Discriminant is strictly positive ,the two solutions are:")
             sol1 = ((-1) * equ_coef[1] - delta**(1/2)) / (2 * equ_coef[2])
             sol2 = ((-1) * equ_coef[1] + delta**(1/2))/ (2 * equ_coef[2])
-            print(sol1)
-            print(sol2)
+            print(f"{sol1:.4f}".rstrip("0").rstrip("."))
+            print(f"{sol2:.4f}".rstrip("0").rstrip("."))
+            # print(sol1)
+            # print(sol2)
